@@ -25,8 +25,10 @@ namespace GenericHelper.Demo
                 try
                 {
                     var context = services.GetRequiredService<StoreContext>();
-                    await context.Database.MigrateAsync();
-                    await StoreContextSeed.SeedAsync(context, loggerFactory);
+                    context.Database.EnsureDeleted();
+                    context.Database.EnsureCreated();
+                    //await context.Database.MigrateAsync();
+                    //await StoreContextSeed.SeedAsync(context, loggerFactory);
 
 
                 }
